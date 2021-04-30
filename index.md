@@ -39,4 +39,11 @@
 
 [链接6](https://Vincentbor0317.github.io/healthy_lifestyle.html)
 
+#计算机科学与编程入门第二次作业-绘图
+## 作业1-人物关系
+[连接7](https://Vincentbor0317.github.io/关系图-分类-红楼梦人物.html)
+## 作业2-网页搜索
+[连接8](https://Vincentbor0317.github.io/作业2-搜索.html)
+## 作业3-网页
+[连接9](https://Vincentbor0317.github.io/作业3.html)
 
