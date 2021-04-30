@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            支啸渤-1900012437-作业3
+    </head>
+	<body>
+        <h3>
+            程设课第四次作业
+            <style>
+                body {
+                  background-color: linen;
+                }
+                
+                p{
+                    font-size: 12px;
+                    
+                }
+            </style>
+        </h3>
+
+		<h4>    
+            一.自动发牌功能
+        </h4> 
+
+            <h5>
+                1. 本次作业使用OO编程
+            </h5>
+
+            <h5>
+                2. 发牌阶段建立的三个类，分别是Card类、Player类和Game类，分别代表单张扑克牌、玩家手牌和整个扑克牌局，
+                下面来详细介绍这些类的具体属性和方法。将类的声明写在了头文件中，类的定义写在了.cpp文件中。 </p>
+            </h5>
+
+            <h5>
+                3. Card类实现
+            </h5>
+            <pre><code>
+                class Card
+                {
+                private:
+                    string suit;//char*和string的区别？
+                    string rank;
+                    int v_suit;
+                    int v_rank;
+                public:
+                    Card(string suit, string rank);//带两个参数的构造函数
+                    Card();
+                    int get_v_rank();
+                    int get_v_suit();
+                    void show();//打印单张纸牌
+                    bool is_null();
+                    bool operator==(Card);
+                    bool operator!=(Card);
+                    bool operator > (Card);
+                    bool operator < (Card);
+                };
+            </code></pre>
+            <p>
+                定义了带有两个参数的构造函数，同时在初始化Card类的对象时利用map函数去
+                记录每中每种花色以及牌型的int值大小。利用运算符重载实现单张牌的大小比较。
+            </p>
+            <h5>
+                4. Player类
+            </h5>
+            <pre><code>
+                class Player
+                {
+                private:
+                    Card cards[14];//选手总共手牌，最后一个位置留给last_card指针
+                    int null_card;//选手第一张空牌的位置（即最后一张牌之后的位置）
+                    int num;
+                    //必须手动添加默认的初始构造函数，否则会在此处报错
+                public:
+                    //初始化
+                    bool push_card(Card);
+                    void show(); //展示玩家所有手牌
+                    //void sort();
+                    Player();
+                    void check_null_card();
+                    Card* get_cards();
+                    int get_null_card();
+                    int get_num();
+                    //出牌
+                };
+                </code></pre>
+            <p>
+                每个Player类有14张card，其中最后一张恒为空。Player类还包含一个指向第一张空纸牌的指针，在发牌(shuffle)的时候维护指针即可知道下一张牌发到哪里。
+            </p>
+            <p>
+                其中get_cards()方法（返回player第一张牌的地址）没有必要，不如写成Card get_card(int i)，直接返回该玩家第i张牌，没有必要使用指针调用。
+            </p>
+            <h5>
+                Game类
+            </h5>
+            <pre><code>
+                class Game
+                {
+                private:
+                    Player players[4];
+                public:
+                    //Game();
+                    //void ini();
+                    void shuffle();
+                    //void sort();
+                    Player get_player(int);
+                    void show();
+                    void show_game_poker_hands();
+                    void show_ddz();
+                };
+            </code></pre>
+            <p>
+                主要功能是发牌和展示。其中发牌从小到大依次发牌即可，不用之后再利用排序算法改变牌的顺序。
+            </p>
+            <h5>
+                6. 输出发牌结果显示（用空格隔开，未用逗号隔开）
+                <p>
+                    <img alt="图片未显示" src="./data/image-1.png" width="700" height="80">
+                </p>
+            </h5>
+        
+        <h4>
+            二.输出牌型
+        </h4>
+            <h5>
+                1. 建立了一个新的Poker_Hands类，其实没有必要，再Player类下写就可以了。
+            </h5>
+            <h5>
+                2. 建立了几个player类，分别去记录每个player的手牌中各个花色的点数，以及建立了一个数组card_num记录每个点数有几张牌。
+            </h5>
+            <pre><code>
+                class Poker_Hands
+                {
+                private:
+                    Player player;
+                    Player D_cards;
+                    Player C_cards;
+                    Player H_cards;
+                    Player S_cards;
+                    int card_num[16];
+                public:
+                    Poker_Hands(Player);
+                    void search_flush(Player);
+                    void search_straight_flush(Player);
+                    void show_flush();
+                    void show_straight();
+                    void show_full_house();
+                    void show_four_of_a_kind();
+                    void show_straight_flush();
+                    void show_poker_hands();
+                };
+                </code></pre>
+            <h5>
+                3. 搜索方法都是用循环实现DFS+剪枝。
+            </h5>
+            <h5>
+                4. 输出牌型结果
+                <p>
+                    <img alt="图片未显示" src="./data/image-2.png" width="700" height="800">
+                </p>
+            </h5>
+        
+        
+
+            
+    
+
+
+        
+
+
+
+	</body>
+</html>
